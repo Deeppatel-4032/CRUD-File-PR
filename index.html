@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Prectice</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>CRUD Operation</h1>
+    <!-- form -->
+  </header>
+  <section>
+    <div class="d-flex justify-content">
+      <form action="" onsubmit="addData(event)">
+        <fieldset>
+          <legend>Add Ditelas</legend>
+          <div class="form-data">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter The Name" required>
+            <label for="name">email</label>
+            <input type="email" id="email" placeholder="Enter The Email" required>
+            <label for="name">contact</label>
+            <input type="tel" id="contact" placeholder="12345-67890" required>
+          </div>
+          <div class="submit-btn d-flex justify-content">
+            <button type="submit">submit</button>
+        </fieldset>
+    </div>
+    </form>
+    </div>
+  </section>
+
+  <!-- view Data -->
+  <section>
+    <h2 class="display-heading">Display Data</h2>
+    <table border="1">
+      <thead>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Action</th>
+      </thead>
+      <tbody id="tableBodyData">
+      </tbody>
+    </table>
+  </section>
+
+  <script src="./js/script.js"></script>
+</body>
+
+</html>
