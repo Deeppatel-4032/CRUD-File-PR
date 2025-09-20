@@ -29,9 +29,9 @@ const addData = (event) => {
   const inputContact = document.getElementById("contact");
 
   // Get values
-  const nameValue = inputName.value.trim();
-  const emailValue = inputEmail.value.trim();
-  const contactValue = inputContact.value.trim();
+  const nameValue = inputName.value;
+  const emailValue = inputEmail.value;
+  const contactValue = inputContact.value;
 
   if (nameValue === "" || emailValue === "" || contactValue === "") {
     alert("Require All Fields");
