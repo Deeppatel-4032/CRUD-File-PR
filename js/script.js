@@ -1,5 +1,10 @@
-let localDataBase = [];
-let isEdit = false;
+let localDataBase = JSON.parse(localStorage.getItem("localDataBase")) || [];
+let isEdit = null;
+
+// Save to localStorage
+const saveToLocalStorage = () => {
+  localStorage.setItem("localDataBase", JSON.stringify(localDataBase));
+};
 
 // Display Data
 const DisplayData = () => {
@@ -8,19 +13,19 @@ const DisplayData = () => {
   localDataBase.forEach((data, index) => {
     tableBodyData.innerHTML += `
     <tr>
-      <td>${index + 1}</td>
-      <td>${data.name}</td>
-      <td>${data.email}</td>
-      <td>${data.contact}</td>
-      <td>
-        <button class="btn-edit" onclick="postEditeData(${index})">Edit</button>
-        <button class="btn-delete" onclick="postDeleteData(${index})">Delete</button>
-      </td>
+    <td>${index + 1}</td>
+    <td>${data.name}</td>
+    <td>${data.email}</td>
+    <td>${data.contact}</td>
+    <td>
+    <button class="btn-edit" onclick="postEditeData(${index})">Edit</button>
+    <button class="btn-delete" onclick="postDeleteData(${index})">Delete</button>
+    </td>
     </tr>`;
   });
 };
 
-const addData = (event) => {
+document.getElementById("dataForm").addEventListener("submit", (event) => {
   event.preventDefault();
 
   // Get input elements
@@ -38,7 +43,7 @@ const addData = (event) => {
     return;
   }
 
-  if (isEdit === false) {
+  if (isEdit === null) {
     // Add new record
     localDataBase.push({
       name: nameValue,
@@ -52,8 +57,10 @@ const addData = (event) => {
       email: emailValue,
       contact: contactValue,
     };
-    isEdit = false; // Reset edit mode
+    isEdit = null; // Reset edit mode
   }
+
+  saveToLocalStorage();
 
   // Clear fields
   inputName.value = "";
@@ -61,7 +68,7 @@ const addData = (event) => {
   inputContact.value = "";
 
   DisplayData();
-};
+});
 
 // Edit
 const postEditeData = (index) => {
@@ -74,5 +81,10 @@ const postEditeData = (index) => {
 // Delete Data
 const postDeleteData = (index) => {
   localDataBase.splice(index, 1);
+  saveToLocalStorage();
   DisplayData();
 };
+
+// Attach form submit
+
+DisplayData();
